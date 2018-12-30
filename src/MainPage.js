@@ -6,7 +6,7 @@ import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
 
 function MainPage(props) {
-  const { region, price, category, time, handleChange } = props;
+  const { region, price, category, time, handleChange, handleSubmit } = props;
   return (
     <div className={props.className}>
       <div className="container">
@@ -73,11 +73,11 @@ function MainPage(props) {
             </div>
             <div className="slot-wrapper">
               <Link className="slot-button" to="/slot">
-                <div className="slot-button-inner">
+                <button className="slot-button-inner" onClick={handleSubmit}>
                   <span className="slot-button-text" to="slot">
                     開始<span className="large">拉</span>
                   </span>
-                </div>
+                </button>
               </Link>
               <img className="slot" src={slot} alt="slot-button" />
               <img className="slot-handle" src={handle} alt="slot-handle" />
@@ -177,6 +177,8 @@ export default styled(MainPage)`
     }
   }
   .slot-button-inner {
+    background: #ffd966;
+    outline: 0;
     width: 100%;
     height: 100%;
     border: 5px solid white;
