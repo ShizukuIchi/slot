@@ -23,7 +23,7 @@ class App extends React.Component {
       <Router>
         <div className="page-container">
           <Route
-            path="/"
+            path="/slot"
             exact
             render={props => (
               <MainPage
@@ -34,7 +34,7 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/slot"
+            path="/slot/play"
             render={props => <SlotPage {...props} {...this.state} />}
           />
         </div>

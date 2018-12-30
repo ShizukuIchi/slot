@@ -37,7 +37,7 @@ class SlotPage extends React.Component {
           <div className="title">拉出來的命定餐廳是...</div>
           <div className="roll">{restaurant}</div>
           <div className="buttons">
-            <Link className="link" to="/">
+            <Link className="link" to="/slot">
               <button className="button">回主選單</button>
             </Link>
             <button className="button" onClick={this.changeRestaurant}>

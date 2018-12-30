@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "keywords": [],
-  "homepage": "http://ShizukuIchi.github.io/slot",
+  "homepage": "https://sh1zuku.csie.io/slot",
   "main": "src/index.js",
   "dependencies": {
     "gh-pages": "^2.0.1",

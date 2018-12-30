@@ -72,7 +72,7 @@ function MainPage(props) {
               </div>
             </div>
             <div className="slot-wrapper">
-              <Link className="slot-button" to="slot">
+              <Link className="slot-button" to="/slot/play">
                 <div className="slot-button-inner">
                   <span className="slot-button-text" to="slot">
                     開始<span className="large">拉</span>
