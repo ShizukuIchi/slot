@@ -13,12 +13,30 @@ class App extends React.Component {
     category: 'XiCan',
     time: 'dinner',
   };
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
   render() {
     return (
       <Router>
         <div className="page-container">
-          <Route path="/" exact render={() => <MainPage {...this.state} />} />
-          <Route path="/slot" render={() => <SlotPage {...this.state} />} />
+          <Route
+            path="/"
+            exact
+            render={props => (
+              <MainPage
+                {...this.state}
+                {...props}
+                handleChange={this.handleChange}
+              />
+            )}
+          />
+          <Route
+            path="/slot"
+            render={props => <SlotPage {...props} {...this.state} />}
+          />
         </div>
       </Router>
     );

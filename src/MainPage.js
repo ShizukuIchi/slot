@@ -6,7 +6,7 @@ import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
 
 function MainPage(props) {
-  const { region, price, category, time } = props;
+  const { region, price, category, time, handleChange } = props;
   return (
     <div className={props.className}>
       <div className="container">
@@ -34,10 +34,42 @@ function MainPage(props) {
               回答問題，我們將為您挑選出命中注定的餐廳！
             </div>
             <div className="questions">
-              <div className="question">1. 您想要用餐的區域: {region}</div>
-              <div className="question">2. 用餐的價位: {price}</div>
-              <div className="question">3. 餐點類型: {category}</div>
-              <div className="question">4. 用餐時間: {time}</div>
+              <div className="question">
+                1. 您想要用餐的區域:
+                <input
+                  type="text"
+                  name="region"
+                  onChange={handleChange}
+                  value={region}
+                />
+              </div>
+              <div className="question">
+                2. 用餐的價位:
+                <input
+                  type="text"
+                  name="price"
+                  onChange={handleChange}
+                  value={price}
+                />
+              </div>
+              <div className="question">
+                3. 餐點類型:{' '}
+                <input
+                  type="text"
+                  name="category"
+                  onChange={handleChange}
+                  value={category}
+                />
+              </div>
+              <div className="question">
+                4. 用餐時間:{' '}
+                <input
+                  type="text"
+                  name="time"
+                  onChange={handleChange}
+                  value={time}
+                />
+              </div>
             </div>
             <div className="slot-wrapper">
               <Link className="slot-button" to="slot">
