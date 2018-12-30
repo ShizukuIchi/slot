@@ -13,7 +13,7 @@ class App extends React.Component {
     price: 200,
     category: 'XiCan',
     time: 'dinner',
-    restaurants: [],
+    restaurants: restaurantsJson.data,
   };
   handleChange = e => {
     this.setState({

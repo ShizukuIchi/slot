@@ -1,25 +1,53 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-function Modal(props) {
-  const { onClose, restaurant, className } = props
-  return (
-    <div className={className} onClick={onClose}>
-      <div className="modal">
-        <div className="modal-title">本日命定餐廳：{restaurant}</div>
-        <div className="modal-content">
-          <div className="intro">
-            <div>簡介</div>
-            <div>營業時間</div>
-            <div>圖：右側</div>
+class Modal extends React.Component {
+  onClose = ({ currentTarget, target }) =>
+    currentTarget === target && this.props.onClose();
+  render() {
+    const { restaurant, className } = this.props;
+    const {
+      name,
+      address,
+      bsMo,
+      bsTu,
+      bsWe,
+      bsTh,
+      bsFr,
+      bsSa,
+      bsSu,
+      bsAll,
+      intro,
+      phone,
+      recommend,
+      score,
+    } = restaurant;
+    return (
+      <div className={className} onClick={this.onClose}>
+        <div className="modal">
+          <div className="modal-title">本日命定餐廳：{name}</div>
+          <div className="modal-content">
+            <div className="intro">
+              <div>{intro}</div>
+              <div>
+                {getOpenTime([bsSu, bsMo, bsTu, bsWe, bsTh, bsFr, bsSa, bsAll])}
+              </div>
+            </div>
+            <div className="addr">{address}</div>
+            <div className="tel">{phone}</div>
+            <div className="comment">
+              <div>{recommend}</div>
+              <div>{score}</div>
+            </div>
           </div>
-          <div className="addr">地址</div>
-          <div className="tel">電話</div>
-          <div className="comment">評論</div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+function getOpenTime(days) {
+  return days[new Date().getDay()] || days[7];
 }
 
 export default styled(Modal)`
@@ -32,8 +60,8 @@ export default styled(Modal)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.3);
-  
+  background: rgba(0, 0, 0, 0.3);
+
   .modal {
     height: 500px;
     width: 800px;
