@@ -1,25 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 class SlotPage extends React.Component {
   state = {
     isModalOpen: false,
-    restaurant: "麥當勞"
+    restaurant: '麥當勞',
   };
   openModal = () => {
     this.setState({
-      isModalOpen: true
+      isModalOpen: true,
     });
   };
   closeModal = () => {
     this.setState({
-      isModalOpen: false
+      isModalOpen: false,
     });
   };
   changeRestaurant = () => {
     this.setState(prevState => ({
-      restaurant: prevState.restaurant === "麥當勞" ? "漢堡王" : "麥當勞"
+      restaurant: prevState.restaurant === '麥當勞' ? '漢堡王' : '麥當勞',
     }));
   };
   render() {
@@ -84,7 +84,7 @@ export default styled(SlotPage)`
     display: flex;
   }
   button {
-    backgrond: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
   }
   .modal-wrapper {
     position: fixed;

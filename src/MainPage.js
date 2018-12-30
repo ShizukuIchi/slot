@@ -1,10 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import slot from './assets/slot-button.png';
+import handle from './assets/handle-small.png';
 
 function MainPage(props) {
+  const { region, price, category, time } = props;
   return (
-    <div class={props.className}>
+    <div className={props.className}>
       <div className="container">
         <div className="content">
           <div className="images">
@@ -30,13 +34,21 @@ function MainPage(props) {
               回答問題，我們將為您挑選出命中注定的餐廳！
             </div>
             <div className="questions">
-              <div className="question">1. 您想要用餐的區域</div>
-              <div className="question">2. 用餐的價位</div>
-              <div className="question">3. 餐點類型</div>
-              <div className="question">4. 用餐時間</div>
+              <div className="question">1. 您想要用餐的區域: {region}</div>
+              <div className="question">2. 用餐的價位: {price}</div>
+              <div className="question">3. 餐點類型: {category}</div>
+              <div className="question">4. 用餐時間: {time}</div>
             </div>
-            <div className="slot">
-              <Link to="slot">開始拉</Link>
+            <div className="slot-wrapper">
+              <Link className="slot-button" to="slot">
+                <div className="slot-button-inner">
+                  <span className="slot-button-text" to="slot">
+                    開始<span className="large">拉</span>
+                  </span>
+                </div>
+              </Link>
+              <img className="slot" src={slot} alt="slot-button" />
+              <img className="slot-handle" src={handle} alt="slot-handle" />
             </div>
           </div>
         </div>
@@ -53,7 +65,6 @@ export default styled(MainPage)`
   .container {
     height: 500px;
     width: 900px;
-    border: 1px solid black;
     display: flex;
     padding: 50px 25px;
   }
@@ -89,7 +100,7 @@ export default styled(MainPage)`
   }
   .text-content {
     height: 100%;
-    padding: 10px;
+    padding: 10px 10px 0;
     display: flex;
     flex-direction: column;
   }
@@ -101,13 +112,15 @@ export default styled(MainPage)`
   .questions {
     margin-top: 20px;
   }
-  .question {
+  .question:not(:last-child) {
     margin-bottom: 10px;
   }
-  .slot {
-    margin-top: 20px;
-    border: 1px black solid;
+  .slot-wrapper {
     flex: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .content {
     margin: 0 25px;
@@ -116,5 +129,46 @@ export default styled(MainPage)`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .slot-button {
+    width: 225px;
+    height: 65px;
+    border-radius: 10px;
+    transform: translate(-19px, 9px);
+    background: #ffd966;
+    position: absolute;
+    text-decoration: none;
+    padding: 5px;
+    overflow: hidden;
+    &:active {
+      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+  .slot-button-inner {
+    width: 100%;
+    height: 100%;
+    border: 5px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:active {
+      transform: translate(1px, 1px);
+    }
+  }
+  .slot-button-text {
+    color: white;
+    font-weight: 700;
+    font-size: 1.2em;
+    .large {
+      font-size: 1.6rem;
+    }
+  }
+  .slot {
+    width: 80%;
+  }
+  .slot-handle {
+    width: 10%;
+    transform: translate(-40%, -40%);
   }
 `;
