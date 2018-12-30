@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 
 import './styles.css';
 import MainPage from './MainPage';
@@ -20,10 +20,10 @@ class App extends React.Component {
   };
   render() {
     return (
-      <Router>
+      <HashRouter>
         <div className="page-container">
           <Route
-            path="/slot"
+            path="/"
             exact
             render={props => (
               <MainPage
@@ -34,11 +34,11 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/slot/play"
+            path="/slot"
             render={props => <SlotPage {...props} {...this.state} />}
           />
         </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
