@@ -28,15 +28,25 @@ class Modal extends React.Component {
           <div className="modal-title">本日命定餐廳：{name}</div>
           <div className="modal-content">
             <div className="intro">
+              <div>簡介：</div>
               <div>{intro}</div>
+              <div>營業時間：</div>
               <div>
                 {getOpenTime([bsSu, bsMo, bsTu, bsWe, bsTh, bsFr, bsSa, bsAll])}
               </div>
             </div>
-            <div className="addr">{address}</div>
-            <div className="tel">{phone}</div>
+            <div className="addr">
+              <div>地址：</div>
+              <div>{address}</div>
+            </div>
+            <div className="tel">
+              <div>電話</div>
+              <div>{phone}</div>
+            </div>
             <div className="comment">
+              <div>推薦菜單：</div>
               <div>{recommend}</div>
+              <div>評價：</div>
               <div>{score}</div>
             </div>
           </div>
