@@ -8,6 +8,10 @@ import firstImg from './assets/first-image1.png';
 import firstImg2 from './assets/first-image2.png';
 import firstImg3 from './assets/first-image3.png';
 import firstImg4 from './assets/first-image4.png';
+import firstImg5 from './assets/first-image5.png';
+import firstImg6 from './assets/first-image6.png';
+import firstImg7 from './assets/first-image7.png';
+import firstImg8 from './assets/first-image8.png';
 
 function MainPage(props) {
   const { region, price, category, time, handleChange, handleSubmit } = props;
@@ -18,15 +22,19 @@ function MainPage(props) {
           <div className="images">
             <div className="image-outer">
               <img src={firstImg} alt="食物" />
+              <img src={firstImg5} alt="食物" />
             </div>
             <div className="image-outer">
               <img src={firstImg2} alt="食物" />
+              <img src={firstImg6} alt="食物" />
             </div>
             <div className="image-outer">
               <img src={firstImg3} alt="食物" />
+              <img src={firstImg7} alt="食物" />
             </div>
             <div className="image-outer">
               <img src={firstImg4} alt="食物" />
+              <img src={firstImg8} alt="食物" />
             </div>
           </div>
           <div className="slogan">拉出你的下一餐</div>
@@ -121,9 +129,41 @@ export default styled(MainPage)`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     img {
+      position: absolute;
       width: 100%;
       height: 100%;
+    }
+    img:nth-child(2) {
+      opacity: 0;
+      animation: fade-in-out 10s infinite;
+    }
+    &:nth-child(2) img {
+      animation-delay: 1s;
+    }
+    &:nth-child(3) img {
+      animation-delay: 2s;
+    }
+    &:nth-child(4) img {
+      animation-delay: 3s;
+    }
+  }
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
     }
   }
   .slogan {

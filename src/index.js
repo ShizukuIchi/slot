@@ -24,10 +24,10 @@ class App extends Component {
   };
   handleSubmit = () => {
     const randomID = Math.floor(
-      Math.random() * (restaurantsJson.data.length - 10),
+      Math.random() * (restaurantsJson.data.length - 20),
     );
     const restaurants = restaurantsJson.data.filter(
-      res => res.id > randomID && res.id <= randomID + 10,
+      res => res.id > randomID && res.id <= randomID + 20,
     );
     setTimeout(() => {
       this.setState({
