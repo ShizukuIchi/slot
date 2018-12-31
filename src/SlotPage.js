@@ -1,10 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import posed from 'react-pose';
 
+import StaggerText from './components/StaggerText'
 import Modal from './components/Modal';
 import slot from './assets/slot.png';
 import handle from './assets/handle-large.png';
+
+const Title = posed.div({
+  visible: {
+    delayChildren: 100,
+    staggerChildren: 40,
+  },
+});
+
+const Character = posed.div({
+  visible: { y: 0, opacity: 1 },
+  invisible: { y: 20, opacity: 0 },
+});
 
 class SlotPage extends React.Component {
   state = {
@@ -39,7 +53,13 @@ class SlotPage extends React.Component {
       image5:
         'http://iphoto.ipeen.com.tw/photo/comment/161309/816010/cm20150225___57d814749cf25808e71a359348821f2c607.jpg',
     },
+    titleVisible: false,
   };
+  componentDidMount() {
+    this.setState(prevState => ({
+      titleVisible: !prevState.titleVisible,
+    }));
+  }
   openModal = () => {
     this.setState({
       isModalOpen: true,
@@ -57,7 +77,7 @@ class SlotPage extends React.Component {
     this.setState({ restaurant });
   };
   render() {
-    const { restaurant, isModalOpen } = this.state;
+    const { restaurant, isModalOpen, titleVisible } = this.state;
     return (
       <div className={this.props.className}>
         <div className="background">
@@ -65,7 +85,9 @@ class SlotPage extends React.Component {
           <img src={handle} className="handle" alt="handle" />
         </div>
         <div className="container">
-          <div className="title">拉出來的命定餐廳是...</div>
+          <div className="title">
+            <StaggerText text="拉出來的命定餐廳是..."></StaggerText>
+          </div>
           <div className="roll">{restaurant.name}</div>
           <div className="buttons">
             <Link className="link" to="/">
@@ -79,7 +101,9 @@ class SlotPage extends React.Component {
             </button>
           </div>
         </div>
-        {isModalOpen && <Modal onClose={this.closeModal} restaurant={restaurant} />}
+        {isModalOpen && (
+          <Modal onClose={this.closeModal} restaurant={restaurant} />
+        )}
       </div>
     );
   }
@@ -126,6 +150,9 @@ export default styled(SlotPage)`
     color: white;
     font-size: 2.5em;
     font-weight: 500;
+    div {
+      display: inline-block;
+    }
   }
   .roll {
     font-size: 3em;

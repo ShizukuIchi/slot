@@ -63,6 +63,7 @@ export default styled(Modal)`
   background: rgba(0, 0, 0, 0.3);
 
   .modal {
+    border-radius: 5px;
     height: 500px;
     width: 800px;
     background: pink;
