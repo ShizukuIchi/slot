@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import posed from 'react-pose';
 
-import StaggerText from './components/StaggerText'
+import StaggerText from './components/StaggerText';
 import Modal from './components/Modal';
 import slot from './assets/slot.png';
 import handle from './assets/handle-large.png';
@@ -68,7 +68,7 @@ class SlotPage extends React.Component {
         </div>
         <div className="container">
           <div className="title">
-            <StaggerText text="拉出來的命定餐廳是..."></StaggerText>
+            <StaggerText text="拉出來的命定餐廳是..." />
           </div>
           <div className="roll">{restaurant.name}</div>
           <div className="buttons">

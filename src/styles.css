@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 *,
@@ -16,4 +17,5 @@ body {
 .page-container {
   background: #fffac0;
   height: 100%;
+  width: 100%;
 }

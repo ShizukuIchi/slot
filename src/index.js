@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, HashRouter } from 'react-router-dom';
 
 import './styles.css';
 import MainPage from './MainPage';
 import SlotPage from './SlotPage';
+import Loader from './components/Loader';
 import restaurantsJson from './assets/data.json';
 
-class App extends React.Component {
+class App extends Component {
   state = {
     region: '大安',
     price: 200,
@@ -35,7 +36,7 @@ class App extends React.Component {
   };
   render() {
     return (
-      <div className="page-container">
+      <>
         <Route
           path="/"
           exact
@@ -52,14 +53,26 @@ class App extends React.Component {
           path="/slot"
           render={props => <SlotPage {...props} {...this.state} />}
         />
-      </div>
+      </>
     );
   }
 }
+
+const Initiator = props => {
+  setTimeout(() => {
+    props.setLoaded();
+  }, 2000);
+  return 'loading';
+};
+
 const rootElement = document.getElementById('root');
 ReactDOM.render(
   <HashRouter>
-    <App />
+    <Loader
+      loader={setLoaded => <Initiator setLoaded={setLoaded} />}
+      component={App}
+      className="page-container"
+    />
   </HashRouter>,
   rootElement,
 );
