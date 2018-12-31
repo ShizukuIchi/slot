@@ -6,6 +6,7 @@ import './styles.css';
 import MainPage from './MainPage';
 import SlotPage from './SlotPage';
 import Loader from './components/Loader';
+import Initiator from './components/Initiator';
 import restaurantsJson from './assets/data.json';
 
 class App extends Component {
@@ -57,13 +58,6 @@ class App extends Component {
     );
   }
 }
-
-const Initiator = props => {
-  setTimeout(() => {
-    props.setLoaded();
-  }, 2000);
-  return 'loading';
-};
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
