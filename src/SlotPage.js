@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import posed from 'react-pose';
 
 import StaggerText from './components/StaggerText';
 import Modal from './components/Modal';

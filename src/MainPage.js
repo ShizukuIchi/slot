@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
+import firstImg from './assets/first-image1.png';
+import firstImg2 from './assets/first-image2.png';
+import firstImg3 from './assets/first-image3.png';
+import firstImg4 from './assets/first-image4.png';
 
 function MainPage(props) {
   const { region, price, category, time, handleChange, handleSubmit } = props;
@@ -13,16 +17,16 @@ function MainPage(props) {
         <div className="content">
           <div className="images">
             <div className="image-outer">
-              <img alt="食物" />
+              <img src={firstImg} alt="食物" />
             </div>
             <div className="image-outer">
-              <img alt="食物" />
+              <img src={firstImg2} alt="食物" />
             </div>
             <div className="image-outer">
-              <img alt="食物" />
+              <img src={firstImg3} alt="食物" />
             </div>
             <div className="image-outer">
-              <img alt="食物" />
+              <img src={firstImg4} alt="食物" />
             </div>
           </div>
           <div className="slogan">拉出你的下一餐</div>
@@ -53,7 +57,7 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                3. 餐點類型:{' '}
+                3. 餐點類型:
                 <input
                   type="text"
                   name="category"
@@ -62,7 +66,7 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                4. 用餐時間:{' '}
+                4. 用餐時間:
                 <input
                   type="text"
                   name="time"
@@ -113,7 +117,14 @@ export default styled(MainPage)`
   }
   .image-outer {
     border-radius: 3px;
-    border: 1px solid black;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .slogan {
     position: relative;
@@ -177,6 +188,7 @@ export default styled(MainPage)`
     }
   }
   .slot-button-inner {
+    cursor: pointer;
     background: #ffd966;
     outline: 0;
     width: 100%;

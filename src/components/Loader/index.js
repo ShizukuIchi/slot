@@ -29,10 +29,12 @@ export default function Loader(props) {
 
 const PosedDiv = posed.div({
   enter: {
+    zIndex: 1,
     opacity: 1,
     delay: 100,
   },
   exit: {
+    zIndex: 0,
     opacity: 0,
   },
 });
