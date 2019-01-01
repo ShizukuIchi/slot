@@ -14,9 +14,14 @@ export default class StaggerText extends Component {
   render() {
     const { text } = this.props;
     return (
-      <Title pose={this.state.visible ? 'visible' : 'invisible'}>
+      <Title
+        pose={this.state.visible ? 'visible' : 'invisible'}
+        style={{ display: 'inline-block' }}
+      >
         {text.split('').map((c, index) => (
-          <Character key={index}>{c}</Character>
+          <Character style={{ display: 'inline-block' }} key={index}>
+            {c}
+          </Character>
         ))}
       </Title>
     );
@@ -26,7 +31,7 @@ export default class StaggerText extends Component {
 const Title = posed.div({
   visible: {
     delayChildren: 100,
-    staggerChildren: 40,
+    staggerChildren: 30,
   },
 });
 

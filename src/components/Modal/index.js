@@ -1,7 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
+import pose, { PoseGroup } from 'react-pose';
+import StaggerText from '../StaggerText';
+
+const Container = pose.div({
+  enter: { opacity: 1 },
+  exit: { opacity: 0 },
+});
+const PosedModal = pose.div({
+  enter: { y: 0 },
+  exit: { y: 100 },
+  transition: {
+    ease: 'easeOut’',
+  },
+});
+const Content = pose.div({
+  enter: {
+    delayChildren: 200,
+    staggerChildren: 60,
+  },
+});
+const Item = pose.div({
+  enter: { y: 0, opacity: 1 },
+  exit: { y: 20, opacity: 0 },
+});
 
 class Modal extends React.Component {
+  state = {
+    visible: false,
+  };
+  componentDidMount() {
+    this.init();
+  }
+  init() {
+    this.setState({ visible: true });
+  }
+  toggle = () => this.setState({ c: !this.state.c });
+
   onClose = ({ currentTarget, target }) =>
     currentTarget === target && this.props.onClose();
   render() {
@@ -23,35 +58,53 @@ class Modal extends React.Component {
       score,
     } = restaurant;
     return (
-      <div className={className} onClick={this.onClose}>
-        <div className="modal">
-          <div className="modal-title">本日命定餐廳：{name}</div>
-          <div className="modal-content">
-            <div className="intro">
-              <div>簡介：</div>
-              <div>{intro}</div>
-              <div>營業時間：</div>
-              <div>
-                {getOpenTime([bsSu, bsMo, bsTu, bsWe, bsTh, bsFr, bsSa, bsAll])}
-              </div>
+      <PoseGroup>
+        {this.props.visible && (
+          <Container key="container" className={className}>
+            <div className={className} onClick={this.onClose}>
+              <PosedModal className="modal">
+                <div className="modal-title">
+                  <span>本日命定餐廳：</span>
+                  <StaggerText text={name} />
+                </div>
+                <Content className="modal-content">
+                  <Item className="intro">
+                    <div className="sub-title">營業時間：</div>
+                    <div>
+                      {getOpenTime([
+                        bsSu,
+                        bsMo,
+                        bsTu,
+                        bsWe,
+                        bsTh,
+                        bsFr,
+                        bsSa,
+                        bsAll,
+                      ])}
+                    </div>
+                    <div className="sub-title">評價：</div>
+                    <div>{score}</div>
+                    <div className="sub-title">簡介：</div>
+                    <div>{intro}</div>
+                  </Item>
+                  <Item className="addr">
+                    <div className="sub-title">地址：</div>
+                    <div>{address}</div>
+                  </Item>
+                  <Item className="tel">
+                    <div className="sub-title">電話：</div>
+                    <div>{phone}</div>
+                  </Item>
+                  <Item className="comment">
+                    <div className="sub-title">推薦菜單：</div>
+                    <div>{recommend}</div>
+                  </Item>
+                </Content>
+              </PosedModal>
             </div>
-            <div className="addr">
-              <div>地址：</div>
-              <div>{address}</div>
-            </div>
-            <div className="tel">
-              <div>電話</div>
-              <div>{phone}</div>
-            </div>
-            <div className="comment">
-              <div>推薦菜單：</div>
-              <div>{recommend}</div>
-              <div>評價：</div>
-              <div>{score}</div>
-            </div>
-          </div>
-        </div>
-      </div>
+          </Container>
+        )}
+      </PoseGroup>
     );
   }
 }
@@ -73,6 +126,7 @@ export default styled(Modal)`
   background: rgba(0, 0, 0, 0.3);
 
   .modal {
+    box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.8);
     border-radius: 5px;
     height: 500px;
     width: 800px;
@@ -80,19 +134,33 @@ export default styled(Modal)`
     padding: 30px;
   }
   .modal-title {
-    font-size: 1.5em;
+    font-size: 1.7em;
     font-weight: 700;
     height: 10%;
+    display: flex;
+    span {
+      white-space: nowrap;
+    }
+    div {
+      overflow: hidden;
+    }
   }
   .modal-content {
     display: grid;
     height: 90%;
     grid-gap: 10px;
-    grid-template-rows: 3fr 2fr;
-    grid-template-columns: 3fr 2fr 4fr;
-    div {
+    grid-template-rows: 9fr 2fr;
+    grid-template-columns: 7fr 3fr 7fr;
+    & > div {
       background: white;
+      overflow: auto;
+      border-radius: 3px;
+      padding: 0px 10px 10px;
     }
+  }
+  .sub-title {
+    font-weight: 700;
+    margin-top: 10px;
   }
   .intro {
     grid-column: 1/3;

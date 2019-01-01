@@ -12,16 +12,12 @@ export default function Loader(props) {
       <PosedDiv
         className={props.className}
         style={{ position: 'absolute' }}
-        pose={loaded ? 'enter' : 'exit'}
-      >
-        <props.component />
-      </PosedDiv>
-      <PosedDiv
-        className={props.className}
-        style={{ position: 'absolute' }}
         pose={loaded ? 'exit' : 'enter'}
       >
         {props.loader(onLoaded)}
+      </PosedDiv>
+      <PosedDiv className={props.className} pose={loaded ? 'enter' : 'exit'}>
+        <props.component />
       </PosedDiv>
     </>
   );

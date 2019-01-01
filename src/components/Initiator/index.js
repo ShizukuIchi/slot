@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import WebFont from 'webfontloader';
 
 const imageUrls = [
@@ -35,7 +35,6 @@ export default class Initiator extends Component {
             const img = new Image();
             img.src = m.default;
             img.onload = () => {
-              console.log(m.default, 'loaded');
               res();
             };
           });
@@ -46,6 +45,6 @@ export default class Initiator extends Component {
     });
   }
   render() {
-    return <div />;
+    return 'loading';
   }
 }

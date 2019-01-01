@@ -10,13 +10,21 @@ import Initiator from './components/Initiator';
 import restaurantsJson from './assets/data.json';
 
 class App extends Component {
-  state = {
-    region: '大安',
-    price: 200,
-    category: 'XiCan',
-    time: 'dinner',
-    restaurants: restaurantsJson.data,
-  };
+  constructor(props) {
+    super(props);
+    const randomID = Math.floor(
+      Math.random() * (restaurantsJson.data.length - 20),
+    );
+    this.state = {
+      region: '大安',
+      price: 200,
+      category: '速食',
+      time: '晚餐',
+      restaurants: restaurantsJson.data.filter(
+        res => res.id > randomID && res.id <= randomID + 20,
+      ),
+    };
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -29,11 +37,9 @@ class App extends Component {
     const restaurants = restaurantsJson.data.filter(
       res => res.id > randomID && res.id <= randomID + 20,
     );
-    setTimeout(() => {
-      this.setState({
-        restaurants,
-      });
-    }, 500);
+    this.setState({
+      restaurants,
+    });
   };
   render() {
     return (
