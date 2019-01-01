@@ -78,7 +78,7 @@ class SlotPage extends React.Component {
               哼！我要重拉
             </button>
             <button className="button" onClick={this.openModal}>
-              看餐廳詳細資訊
+              餐廳詳細資訊
             </button>
           </div>
         </div>
@@ -154,11 +154,28 @@ export default styled(SlotPage)`
     height: 66px;
     display: flex;
     justify-content: space-around;
+    perspective: 400;
     align-items: center;
   }
   button {
-    width: 150px;
-    height: 65px;
-    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    width: 180px;
+    height: 55px;
+    font-size: 1.6em;
+    font-weight: 700;
+    background: #ca3535;
+    transform: rotateX(35deg) translateY(-6px);
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0px 6px 0px #630d0d, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+    outline: 0;
+    transition: all .04s;
+    color: white;
+    &:active {
+      color: rgb(255,255,255,0.9);
+      box-shadow: none;
+      transform: rotateX(35deg) translateY(0px);
+      background: #ad2e2e;
+    }
   }
 `;
