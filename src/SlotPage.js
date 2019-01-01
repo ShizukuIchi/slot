@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import StaggerText from './components/StaggerText';
 import Modal from './components/Modal';
+import LongPressImg from './components/LongPressImg';
 import slot from './assets/slot.png';
 import handle from './assets/handle-large.png';
 
@@ -32,11 +33,17 @@ class SlotPage extends React.Component {
   };
   render() {
     const { restaurant, isModalOpen } = this.state;
+    if (typeof restaurant === 'undefined') return <Redirect to="/" />;
     return (
       <div className={this.props.className}>
         <div className="background">
           <img src={slot} className="slot" alt="slot" />
-          <img src={handle} className="handle" alt="handle" />
+          <LongPressImg
+            src={handle}
+            className="handle"
+            alt="handle"
+            onLongPress={this.changeRestaurant}
+          />
         </div>
         <div className="container">
           <div className="title">
@@ -108,6 +115,7 @@ export default styled(SlotPage)`
     color: white;
     font-size: 2.5em;
     font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
   }
   .roll {
     font-size: 3em;
@@ -146,6 +154,7 @@ export default styled(SlotPage)`
     font-weight: 700;
     background: #ca3535;
     transform: rotateX(35deg) translateY(-6px);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .5);
     border: 0;
     border-radius: 10px;
     box-shadow: 0px 6px 0px #630d0d, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);

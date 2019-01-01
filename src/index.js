@@ -1,28 +1,23 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, HashRouter, withRouter } from 'react-router-dom';
 
 import './styles.css';
 import MainPage from './MainPage';
 import SlotPage from './SlotPage';
 import Loader from './components/Loader';
 import Initiator from './components/Initiator';
-import restaurantsJson from './assets/data.json';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const randomID = Math.floor(
-      Math.random() * (restaurantsJson.data.length - 20),
-    );
     this.state = {
+      isFetching: false,
       region: '大安',
       price: 200,
       category: '速食',
       time: '晚餐',
-      restaurants: restaurantsJson.data.filter(
-        res => res.id > randomID && res.id <= randomID + 20,
-      ),
+      restaurants: [],
     };
   }
   handleChange = e => {
@@ -30,17 +25,7 @@ class App extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  handleSubmit = () => {
-    const randomID = Math.floor(
-      Math.random() * (restaurantsJson.data.length - 20),
-    );
-    const restaurants = restaurantsJson.data.filter(
-      res => res.id > randomID && res.id <= randomID + 20,
-    );
-    this.setState({
-      restaurants,
-    });
-  };
+  handleUpdateRestaurants = restaurants => this.setState({ restaurants });
   render() {
     return (
       <>
@@ -52,7 +37,7 @@ class App extends Component {
               {...this.state}
               {...props}
               handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
+              handleUpdateRestaurants={this.handleUpdateRestaurants}
             />
           )}
         />
@@ -70,7 +55,7 @@ ReactDOM.render(
   <HashRouter>
     <Loader
       loader={setLoaded => <Initiator setLoaded={setLoaded} />}
-      component={App}
+      component={withRouter(App)}
       className="page-container"
     />
   </HashRouter>,

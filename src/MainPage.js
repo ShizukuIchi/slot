@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
+import DataRequester from './components/DataRequester';
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
 import firstImg from './assets/first-image1.png';
@@ -14,7 +14,18 @@ import firstImg7 from './assets/first-image7.png';
 import firstImg8 from './assets/first-image8.png';
 
 function MainPage(props) {
-  const { region, price, category, time, handleChange, handleSubmit } = props;
+  const {
+    region,
+    price,
+    category,
+    time,
+    handleChange,
+    handleUpdateRestaurants,
+  } = props;
+  function handleDataUpdate(data) {
+    handleUpdateRestaurants(data);
+    props.history.push('./slot');
+  }
   return (
     <div className={props.className}>
       <div className="container">
@@ -84,13 +95,25 @@ function MainPage(props) {
               </div>
             </div>
             <div className="slot-wrapper">
-              <Link className="slot-button" to="/slot">
-                <button className="slot-button-inner" onClick={handleSubmit}>
-                  <span className="slot-button-text" to="slot">
-                    開始<span className="large">拉</span>
-                  </span>
-                </button>
-              </Link>
+              <DataRequester
+                fetchArguments={{ region, price, category, time }}
+                callback={handleDataUpdate}
+              >
+                {(isFetching, onFetch) => (
+                  <button
+                    className="slot-button"
+                    onClick={onFetch}
+                    style={{ cursor: isFetching ? 'not-allowed' : 'pointer' }}
+                  >
+                    <div className="slot-button-inner">
+                      <span className="slot-button-text" to="slot">
+                        {isFetching ? '讀取' : '開始'}
+                        <span className="large">拉</span>
+                      </span>
+                    </div>
+                  </button>
+                )}
+              </DataRequester>
               <img className="slot" src={slot} alt="slot-button" />
               <img className="slot-handle" src={handle} alt="slot-handle" />
             </div>
@@ -222,15 +245,16 @@ export default styled(MainPage)`
     position: absolute;
     text-decoration: none;
     padding: 5px;
+    outline: 0;
     overflow: hidden;
     &:active {
+      transform: translate(-18px, 10px);
       box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
   }
   .slot-button-inner {
     cursor: pointer;
     background: #ffd966;
-    outline: 0;
     width: 100%;
     height: 100%;
     border: 5px solid white;
@@ -238,9 +262,6 @@ export default styled(MainPage)`
     display: flex;
     justify-content: center;
     align-items: center;
-    &:active {
-      transform: translate(1px, 1px);
-    }
   }
   .slot-button-text {
     color: white;
