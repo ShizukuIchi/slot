@@ -1,9 +1,9 @@
 {
-  "main.css": "/slot/static/css/main.3c866c91.chunk.css",
-  "main.js": "/slot/static/js/main.bd9580ee.chunk.js",
-  "main.js.map": "/slot/static/js/main.bd9580ee.chunk.js.map",
-  "static/js/1.6859d7be.chunk.js": "/slot/static/js/1.6859d7be.chunk.js",
-  "static/js/1.6859d7be.chunk.js.map": "/slot/static/js/1.6859d7be.chunk.js.map",
+  "main.css": "/slot/static/css/main.add6c6b1.chunk.css",
+  "main.js": "/slot/static/js/main.6baf178f.chunk.js",
+  "main.js.map": "/slot/static/js/main.6baf178f.chunk.js.map",
+  "static/js/1.ab851aed.chunk.js": "/slot/static/js/1.ab851aed.chunk.js",
+  "static/js/1.ab851aed.chunk.js.map": "/slot/static/js/1.ab851aed.chunk.js.map",
   "runtime~main.js": "/slot/static/js/runtime~main.1a6d728a.js",
   "runtime~main.js.map": "/slot/static/js/runtime~main.1a6d728a.js.map",
   "static/media/slot-button.png": "/slot/static/media/slot-button.3f32ca1c.png",
@@ -17,8 +17,8 @@
   "static/media/slot.png": "/slot/static/media/slot.d2f1aefb.png",
   "static/media/handle-large.png": "/slot/static/media/handle-large.68522c2f.png",
   "static/media/first-image1.png": "/slot/static/media/first-image1.7bf0b8ba.png",
-  "static/css/main.3c866c91.chunk.css.map": "/slot/static/css/main.3c866c91.chunk.css.map",
+  "static/css/main.add6c6b1.chunk.css.map": "/slot/static/css/main.add6c6b1.chunk.css.map",
   "index.html": "/slot/index.html",
-  "precache-manifest.ff601c93b210d2f6c0d114c715037977.js": "/slot/precache-manifest.ff601c93b210d2f6c0d114c715037977.js",
+  "precache-manifest.f36b9c5da4f5fbfe42d456185ffe4f22.js": "/slot/precache-manifest.f36b9c5da4f5fbfe42d456185ffe4f22.js",
   "service-worker.js": "/slot/service-worker.js"
 }
