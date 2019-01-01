@@ -127,17 +127,19 @@ export default styled(Modal)`
 
   .modal {
     box-shadow: 1px 1px 50px rgba(0, 0, 0, 0.8);
-    border-radius: 5px;
+    border-radius: 3px;
     height: 500px;
     width: 800px;
     background: pink;
     padding: 30px;
   }
   .modal-title {
-    font-size: 1.7em;
+    font-size: 1.34em;
     font-weight: 700;
     height: 10%;
     display: flex;
+    color: #ec407a;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
     span {
       white-space: nowrap;
     }
@@ -159,6 +161,7 @@ export default styled(Modal)`
     }
   }
   .sub-title {
+    color: #ec407a;
     font-weight: 700;
     margin-top: 10px;
   }

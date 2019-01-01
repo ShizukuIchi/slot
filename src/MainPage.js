@@ -266,7 +266,8 @@ export default styled(MainPage)`
   .slot-button-text {
     color: white;
     font-weight: 700;
-    font-size: 1.2em;
+    font-size: 1.6em;
+    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
     .large {
       font-size: 1.6rem;
     }

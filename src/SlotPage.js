@@ -103,6 +103,7 @@ export default styled(SlotPage)`
     transform: translate(-41px, -60px);
     cursor: pointer;
     z-index: 2;
+    filter: drop-shadow(1px 1px 5px black);
     transition: transform 1s;
     transform-origin: bottom;
     &:active {
@@ -129,8 +130,8 @@ export default styled(SlotPage)`
   .inner-roll {
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 10px;
+    right: 10px;
     min-height: 100%;
     display: flex;
     justify-content: center;
