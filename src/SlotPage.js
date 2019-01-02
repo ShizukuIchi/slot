@@ -9,19 +9,23 @@ import slot from './assets/slot.png';
 import handle from './assets/handle-large.png';
 
 class SlotPage extends React.Component {
-  state = {
-    isModalOpen: false,
-    isSlotLocked: false,
-    isModalLocked: true,
-    restaurant: this.props.restaurants[
-      Math.floor(Math.random() * this.props.restaurants.length)
-    ],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false,
+      isSlotLocked: false,
+      isModalLocked: true,
+      restaurant: this.props.restaurants[
+        Math.floor(Math.random() * this.props.restaurants.length)
+      ],
+    };
+    this.isModalLocked = true;
+  }
   componentWillUnmount() {
     clearTimeout(this.slotLockTimer);
   }
   openModal = () => {
-    if (this.state.isSlotLocked || this.state.isModalLocked) return;
+    if (this.state.isSlotLocked || this.isModalLocked) return;
     this.setState({
       isModalOpen: true,
     });
@@ -33,10 +37,11 @@ class SlotPage extends React.Component {
   };
   changeRestaurant = () => {
     if (this.state.isSlotLocked) return;
+    this.isModalLocked = false;
     const { restaurants } = this.props;
     const restaurant =
       restaurants[Math.floor(Math.random() * restaurants.length)];
-    this.setState({ restaurant, isSlotLocked: true, isModalLocked: false });
+    this.setState({ restaurant, isSlotLocked: true });
     this.slotLockTimer = setTimeout(() => {
       this.setState({
         isSlotLocked: false,
@@ -44,7 +49,7 @@ class SlotPage extends React.Component {
     }, 2000);
   };
   render() {
-    const { restaurant, isModalOpen, isSlotLocked, isModalLocked } = this.state;
+    const { restaurant, isModalOpen, isSlotLocked } = this.state;
     if (typeof restaurant === 'undefined') return <Redirect to="/" />;
     return (
       <div className={this.props.className}>
@@ -65,7 +70,7 @@ class SlotPage extends React.Component {
           </div>
           <div className="roll">
             <div className="inner-roll">
-              {isSlotLocked || isModalLocked ? '???' : restaurant.name}
+              {isSlotLocked ? '???' : restaurant.name}
             </div>
           </div>
           <div className="buttons">
@@ -76,10 +81,12 @@ class SlotPage extends React.Component {
               className={isSlotLocked ? 'not-allowed' : ''}
               onClick={this.changeRestaurant}
             >
-              哼！我要重拉
+              {this.isModalLocked ? '第一次拉拉' : '哼！我要重拉'}
             </button>
             <button
-              className={isSlotLocked || isModalLocked ? 'not-allowed' : ''}
+              className={
+                isSlotLocked || this.isModalLocked ? 'not-allowed' : ''
+              }
               onClick={this.openModal}
             >
               餐廳詳細資訊
@@ -182,7 +189,7 @@ export default styled(SlotPage)`
     border-radius: 10px;
     box-shadow: 0px 6px 0px #630d0d, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
     outline: 0;
-    transition: all .04s;
+    transition: all .05s, color .2s;
     color: white;
     &:active {
       color: rgb(255,255,255,0.9);
@@ -193,8 +200,9 @@ export default styled(SlotPage)`
   }
   button.not-allowed {
     cursor: not-allowed;
+    color: rgb(180,180,180);
     &:active {
-      color: white;
+      color: rgb(180,180,180);
       box-shadow: 0px 6px 0px #630d0d, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
       transform: rotateX(35deg) translateY(-6px);
       background: #ca3535;
