@@ -11,11 +11,17 @@ import handle from './assets/handle-large.png';
 class SlotPage extends React.Component {
   state = {
     isModalOpen: false,
+    isSlotLocked: false,
+    isModalLocked: true,
     restaurant: this.props.restaurants[
       Math.floor(Math.random() * this.props.restaurants.length)
     ],
   };
+  componentWillUnmount() {
+    clearTimeout(this.slotLockTimer);
+  }
   openModal = () => {
+    if (this.state.isSlotLocked || this.state.isModalLocked) return;
     this.setState({
       isModalOpen: true,
     });
@@ -26,13 +32,19 @@ class SlotPage extends React.Component {
     });
   };
   changeRestaurant = () => {
+    if (this.state.isSlotLocked) return;
     const { restaurants } = this.props;
     const restaurant =
       restaurants[Math.floor(Math.random() * restaurants.length)];
-    this.setState({ restaurant });
+    this.setState({ restaurant, isSlotLocked: true, isModalLocked: false });
+    this.slotLockTimer = setTimeout(() => {
+      this.setState({
+        isSlotLocked: false,
+      });
+    }, 2000);
   };
   render() {
-    const { restaurant, isModalOpen } = this.state;
+    const { restaurant, isModalOpen, isSlotLocked, isModalLocked } = this.state;
     if (typeof restaurant === 'undefined') return <Redirect to="/" />;
     return (
       <div className={this.props.className}>
@@ -43,6 +55,8 @@ class SlotPage extends React.Component {
             className="handle"
             alt="handle"
             onLongPress={this.changeRestaurant}
+            pressTime={500}
+            isLocked={isSlotLocked}
           />
         </div>
         <div className="container">
@@ -50,16 +64,24 @@ class SlotPage extends React.Component {
             <StaggerText text="拉出來的命定餐廳是..." />
           </div>
           <div className="roll">
-            <div className="inner-roll">{restaurant.name}</div>
+            <div className="inner-roll">
+              {isSlotLocked || isModalLocked ? '???' : restaurant.name}
+            </div>
           </div>
           <div className="buttons">
             <Link className="link" to="/">
               <button className="button">回主選單</button>
             </Link>
-            <button className="button" onClick={this.changeRestaurant}>
+            <button
+              className={isSlotLocked ? 'not-allowed' : ''}
+              onClick={this.changeRestaurant}
+            >
               哼！我要重拉
             </button>
-            <button className="button" onClick={this.openModal}>
+            <button
+              className={isSlotLocked || isModalLocked ? 'not-allowed' : ''}
+              onClick={this.openModal}
+            >
               餐廳詳細資訊
             </button>
           </div>
@@ -167,6 +189,15 @@ export default styled(SlotPage)`
       box-shadow: none;
       transform: rotateX(35deg) translateY(0px);
       background: #ad2e2e;
+    }
+  }
+  button.not-allowed {
+    cursor: not-allowed;
+    &:active {
+      color: white;
+      box-shadow: 0px 6px 0px #630d0d, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+      transform: rotateX(35deg) translateY(-6px);
+      background: #ca3535;
     }
   }
 `;

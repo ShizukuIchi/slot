@@ -5,11 +5,11 @@ const DataRequester = props => {
   const [isFetching, setIsFetching] = useState(false);
   function onFetch() {
     if (isFetching) return;
+    setIsFetching(true);
     setTimeout(() => {
       setIsFetching(false);
       props.callback(json.data);
     }, 500);
-    setIsFetching(true);
   }
   return props.children(isFetching, onFetch);
 };

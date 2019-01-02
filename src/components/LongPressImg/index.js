@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
 
-const LongPressImg = ({ onLongPress, src, alt, className }) => {
-  let timer = null;
+function LongPressImg({ onLongPress, pressTime, src, alt, className }) {
+  let timer;
+  useEffect(() => {
+    timer = null;
+    return () => {
+      clearTimeout(timer);
+    };
+  });
   function onMouseDown() {
     timer = setTimeout(() => {
       onLongPress();
-    }, 500);
+    }, pressTime);
   }
   function onMouseUp() {
     clearTimeout(timer);
   }
-  useEffect(() => () => clearTimeout(timer));
   return (
     <img
       src={src}
@@ -20,6 +25,6 @@ const LongPressImg = ({ onLongPress, src, alt, className }) => {
       onMouseUp={onMouseUp}
     />
   );
-};
+}
 
 export default LongPressImg;
