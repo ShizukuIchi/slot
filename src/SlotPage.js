@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
+import SplitText from 'react-pose-text';
 
-import StaggerText from './components/StaggerText';
 import Modal from './components/Modal';
 import LongPressImg from './components/LongPressImg';
 import slot from './assets/slot.png';
@@ -66,7 +66,9 @@ class SlotPage extends React.Component {
         </div>
         <div className="container">
           <div className="title">
-            <StaggerText text="拉出來的命定餐廳是..." />
+            <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+              拉出來的命定餐廳是...
+            </SplitText>
           </div>
           <div className="roll">
             <div className="inner-roll">
@@ -102,6 +104,15 @@ class SlotPage extends React.Component {
     );
   }
 }
+
+const charPoses = {
+  exit: { opacity: 0, y: 20 },
+  enter: {
+    opacity: 1,
+    y: 0,
+    delay: ({ charIndex }) => charIndex * 30,
+  },
+};
 
 export default styled(SlotPage)`
   height: 100%;

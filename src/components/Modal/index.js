@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import pose, { PoseGroup } from 'react-pose';
-import StaggerText from '../StaggerText';
+import SplitText from 'react-pose-text';
 
 const Container = pose.div({
   enter: { opacity: 1 },
@@ -11,7 +11,7 @@ const PosedModal = pose.div({
   enter: { y: 0 },
   exit: { y: 100 },
   transition: {
-    ease: 'easeOut’',
+    ease: 'linear',
   },
 });
 const Content = pose.div({
@@ -22,21 +22,18 @@ const Content = pose.div({
 });
 const Item = pose.div({
   enter: { y: 0, opacity: 1 },
-  exit: { y: 20, opacity: 0 },
+  exit: { y: 15, opacity: 0 },
 });
+const charPoses = {
+  exit: { opacity: 0, y: 20 },
+  enter: {
+    opacity: 1,
+    y: 0,
+    delay: ({ charIndex }) => charIndex * 30,
+  },
+};
 
 class Modal extends React.Component {
-  state = {
-    visible: false,
-  };
-  componentDidMount() {
-    this.init();
-  }
-  init() {
-    this.setState({ visible: true });
-  }
-  toggle = () => this.setState({ c: !this.state.c });
-
   onClose = ({ currentTarget, target }) =>
     currentTarget === target && this.props.onClose();
   render() {
@@ -62,10 +59,10 @@ class Modal extends React.Component {
         {this.props.visible && (
           <Container key="container" className={className}>
             <div className={className} onClick={this.onClose}>
-              <PosedModal className="modal">
+              <PosedModal className="modal" beforeChildren>
                 <div className="modal-title">
                   <span>本日命定餐廳：</span>
-                  <StaggerText text={name} />
+                  <SplitText charPoses={charPoses}>{name}</SplitText>
                 </div>
                 <Content className="modal-content">
                   <Item className="intro">

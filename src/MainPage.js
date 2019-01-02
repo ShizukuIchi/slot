@@ -211,19 +211,26 @@ export default styled(MainPage)`
     flex-direction: column;
   }
   .title {
+    white-space: nowrap;
     font-size: 2em;
     font-weight: 700;
     text-align: center;
   }
+  .subtitle {
+    white-space: nowrap;
+  }
   .questions {
     margin-top: 20px;
+  }
+  .question {
+    height: 24px;
+    display: flex;
   }
   .question:not(:last-child) {
     margin-bottom: 10px;
   }
   .slot-wrapper {
     flex: 1;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
