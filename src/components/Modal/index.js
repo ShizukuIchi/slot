@@ -67,7 +67,7 @@ class Modal extends React.Component {
                 <Content className="modal-content">
                   <Item className="intro">
                     <div className="sub-title">營業時間：</div>
-                    <div>
+                    <div className="sub-content">
                       {getOpenTime([
                         bsSu,
                         bsMo,
@@ -80,21 +80,21 @@ class Modal extends React.Component {
                       ])}
                     </div>
                     <div className="sub-title">評價：</div>
-                    <div>{score}</div>
+                    <div className="sub-content">{score}</div>
                     <div className="sub-title">簡介：</div>
-                    <div>{intro}</div>
+                    <div className="sub-content">{intro}</div>
                   </Item>
                   <Item className="addr">
                     <div className="sub-title">地址：</div>
-                    <div>{address}</div>
+                    <div className="sub-content">{address}</div>
                   </Item>
                   <Item className="tel">
                     <div className="sub-title">電話：</div>
-                    <div>{phone}</div>
+                    <div className="sub-content">{phone}</div>
                   </Item>
                   <Item className="comment">
                     <div className="sub-title">推薦菜單：</div>
-                    <div>{recommend}</div>
+                    <div className="sub-content">{recommend}</div>
                   </Item>
                 </Content>
               </PosedModal>
@@ -154,13 +154,15 @@ export default styled(Modal)`
       background: white;
       overflow: auto;
       border-radius: 3px;
-      padding: 0px 10px 10px;
+      padding: 10px 10px 0;
     }
   }
   .sub-title {
     color: #ec407a;
     font-weight: 700;
-    margin-top: 10px;
+  }
+  .sub-content {
+    margin-bottom: 10px;
   }
   .intro {
     grid-column: 1/3;

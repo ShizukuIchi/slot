@@ -206,7 +206,6 @@ export default styled(MainPage)`
   }
   .text-content {
     height: 100%;
-    padding: 10px 10px 0;
     display: flex;
     flex-direction: column;
   }
@@ -225,6 +224,11 @@ export default styled(MainPage)`
   .question {
     height: 24px;
     display: flex;
+    white-space: nowrap;
+    input {
+      width: 30px;
+      flex-grow: 1;
+    }
   }
   .question:not(:last-child) {
     margin-bottom: 10px;
@@ -244,7 +248,7 @@ export default styled(MainPage)`
     align-items: center;
   }
   .slot-button {
-    width: 225px;
+    width: 235px;
     height: 65px;
     border-radius: 10px;
     transform: translate(-19px, 9px);
