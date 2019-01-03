@@ -5,6 +5,7 @@ import SplitText from 'react-pose-text';
 
 import Modal from './components/Modal';
 import LongPressImg from './components/LongPressImg';
+import SlotRoller from './components/SlotRoller';
 import slot from './assets/slot.png';
 import handle from './assets/handle-large.png';
 
@@ -40,6 +41,7 @@ class SlotPage extends React.Component {
   };
   changeRestaurant = () => {
     if (this.state.isSlotLocked) return;
+    // this.roller.roll();
     this.isModalLocked = false;
     const { restaurants } = this.props;
     const restaurant =
@@ -75,7 +77,9 @@ class SlotPage extends React.Component {
           </div>
           <div className="roll">
             <div className="inner-roll">
+              {/* <SlotRoller ref={r => (this.roller = r)}> */}
               {isSlotLocked ? '???' : restaurant.name}
+              {/* </SlotRoller> */}
             </div>
           </div>
           <div className="buttons">
