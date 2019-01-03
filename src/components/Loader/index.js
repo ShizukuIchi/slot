@@ -7,13 +7,9 @@ export default function Loader(props) {
     setLoaded(true);
   }
   return (
-    <PoseGroup>
+    <PoseGroup animateOnMount={true}>
       {!loaded && (
-        <PosedDiv
-          key="loader"
-          className={props.className}
-          style={{ position: 'absolute' }}
-        >
+        <PosedDiv key="loader" className={props.className}>
           {props.loader(onLoaded)}
         </PosedDiv>
       )}
