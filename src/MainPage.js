@@ -58,7 +58,7 @@ function MainPage(props) {
             </div>
             <div className="questions">
               <div className="question">
-                1. 您想要用餐的區域:
+                1. 您想要用餐的區域：
                 <input
                   type="text"
                   name="region"
@@ -67,7 +67,7 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                2. 用餐的價位:
+                2. 用餐的價位：
                 <input
                   type="text"
                   name="price"
@@ -76,7 +76,7 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                3. 餐點類型:
+                3. 餐點類型：
                 <input
                   type="text"
                   name="category"
@@ -85,7 +85,7 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                4. 用餐時間:
+                4. 用餐時間：
                 <input
                   type="text"
                   name="time"

@@ -55,7 +55,7 @@ ReactDOM.render(
   <HashRouter>
     <Loader
       loader={setLoaded => <Initiator setLoaded={setLoaded} />}
-      component={withRouter(App)}
+      component={App}
       className="page-container"
     />
   </HashRouter>,
