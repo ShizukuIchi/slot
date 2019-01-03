@@ -6,6 +6,9 @@
   "homepage": "https://sh1zuku.csie.io/slot",
   "main": "src/index.js",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.12",
+    "@fortawesome/free-solid-svg-icons": "^5.6.3",
+    "@fortawesome/react-fontawesome": "^0.1.3",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-pose": "^4.0.4",

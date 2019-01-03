@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, HashRouter, withRouter } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 
 import './styles.css';
 import MainPage from './MainPage';

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DataRequester from './components/DataRequester';
+
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
 import firstImg from './assets/first-image1.png';
@@ -58,7 +59,11 @@ function MainPage(props) {
             </div>
             <div className="questions">
               <div className="question">
-                1. 您想要用餐的區域：
+                <FontAwesomeIcon
+                  className="question-icon"
+                  icon="location-arrow"
+                />
+                <span className="question-title">用餐區域：</span>
                 <input
                   type="text"
                   name="region"
@@ -67,7 +72,8 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                2. 用餐的價位：
+                <FontAwesomeIcon className="question-icon" icon="dollar-sign" />
+                <span className="question-title">用餐價位：</span>
                 <input
                   type="text"
                   name="price"
@@ -76,7 +82,8 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                3. 餐點類型：
+                <FontAwesomeIcon className="question-icon" icon="utensils" />
+                <span className="question-title">餐點類型：</span>
                 <input
                   type="text"
                   name="category"
@@ -85,7 +92,8 @@ function MainPage(props) {
                 />
               </div>
               <div className="question">
-                4. 用餐時間：
+                <FontAwesomeIcon className="question-icon" icon="clock" />
+                <span className="question-title">用餐時間：</span>
                 <input
                   type="text"
                   name="time"
@@ -217,6 +225,7 @@ export default styled(MainPage)`
   }
   .subtitle {
     white-space: nowrap;
+    text-align: center;
   }
   .questions {
     margin-top: 20px;
@@ -224,14 +233,23 @@ export default styled(MainPage)`
   .question {
     height: 24px;
     display: flex;
-    white-space: nowrap;
+    align-items: center;
     input {
       width: 30px;
+      border-width: 1px;
       flex-grow: 1;
     }
   }
+  .question-icon {
+    width: 16px;
+    height: 16px;
+  }
   .question:not(:last-child) {
     margin-bottom: 10px;
+  }
+  .question-title {
+    white-space: nowrap;
+    margin-left: 7px;
   }
   .slot-wrapper {
     flex: 1;
