@@ -1,5 +1,12 @@
 import { Component } from 'react';
 import WebFont from 'webfontloader';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faLocationArrow,
+  faClock,
+  faUtensils,
+  faDollarSign,
+} from '@fortawesome/free-solid-svg-icons';
 
 const imageUrls = [
   () => import('../../assets/first-image1.png'),
@@ -43,6 +50,7 @@ export default class Initiator extends Component {
     Promise.all([fontPromise, ...imagePromises]).then(() => {
       this.props.setLoaded();
     });
+    library.add(faLocationArrow, faClock, faUtensils, faDollarSign);
   }
   render() {
     return 'loading';
