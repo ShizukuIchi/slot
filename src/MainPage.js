@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DataRequester from './components/DataRequester';
+import LazyImage from './components/LazyImage';
 
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
@@ -13,6 +14,9 @@ import firstImg5 from './assets/first-image5.png';
 import firstImg6 from './assets/first-image6.png';
 import firstImg7 from './assets/first-image7.png';
 import firstImg8 from './assets/first-image8.png';
+import slotLarge from './assets/slot.png';
+import handleLarge from './assets/handle-large.png';
+const ImagePlaceholder = () => null;
 
 function MainPage(props) {
   const {
@@ -24,6 +28,10 @@ function MainPage(props) {
     handleUpdateRestaurants,
   } = props;
   function handleDataUpdate(data) {
+    [handleLarge, slotLarge].forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
     handleUpdateRestaurants(data);
     props.history.push('./slot');
   }
@@ -33,20 +41,60 @@ function MainPage(props) {
         <div className="content">
           <div className="images">
             <div className="image-outer">
-              <img src={firstImg} alt="食物" />
-              <img src={firstImg5} alt="食物" />
+              <LazyImage
+                src={firstImg}
+                alt="食物1"
+                className="fade-in"
+                placeholder={ImagePlaceholder}
+              />
+              <LazyImage
+                src={firstImg5}
+                alt="食物5"
+                className="fade-in-out"
+                placeholder={ImagePlaceholder}
+              />
             </div>
             <div className="image-outer">
-              <img src={firstImg2} alt="食物" />
-              <img src={firstImg6} alt="食物" />
+              <LazyImage
+                src={firstImg2}
+                className="fade-in"
+                alt="食物2"
+                placeholder={ImagePlaceholder}
+              />
+              <LazyImage
+                src={firstImg6}
+                className="fade-in-out"
+                alt="食物6"
+                placeholder={ImagePlaceholder}
+              />
             </div>
             <div className="image-outer">
-              <img src={firstImg3} alt="食物" />
-              <img src={firstImg7} alt="食物" />
+              <LazyImage
+                src={firstImg3}
+                className="fade-in"
+                alt="食物3"
+                placeholder={ImagePlaceholder}
+              />
+              <LazyImage
+                src={firstImg7}
+                className="fade-in-out"
+                alt="食物7"
+                placeholder={ImagePlaceholder}
+              />
             </div>
             <div className="image-outer">
-              <img src={firstImg4} alt="食物" />
-              <img src={firstImg8} alt="食物" />
+              <LazyImage
+                src={firstImg4}
+                className="fade-in"
+                alt="食物4"
+                placeholder={ImagePlaceholder}
+              />
+              <LazyImage
+                src={firstImg8}
+                className="fade-in-out"
+                alt="食物8"
+                placeholder={ImagePlaceholder}
+              />
             </div>
           </div>
           <div className="slogan">拉出你的下一餐</div>
@@ -103,6 +151,18 @@ function MainPage(props) {
               </div>
             </div>
             <div className="slot-wrapper">
+              <LazyImage
+                src={slot}
+                className="slot fade-in"
+                alt="slot-button"
+                placeholder={ImagePlaceholder}
+              />
+              <LazyImage
+                src={handle}
+                className="slot-handle fade-in"
+                alt="slot-handle"
+                placeholder={ImagePlaceholder}
+              />
               <DataRequester
                 fetchArguments={{ region, price, category, time }}
                 callback={handleDataUpdate}
@@ -122,8 +182,6 @@ function MainPage(props) {
                   </button>
                 )}
               </DataRequester>
-              <img className="slot" src={slot} alt="slot-button" />
-              <img className="slot-handle" src={handle} alt="slot-handle" />
             </div>
           </div>
         </div>
@@ -131,7 +189,6 @@ function MainPage(props) {
     </div>
   );
 }
-
 export default styled(MainPage)`
   height: 100%;
   display: flex;
@@ -151,6 +208,7 @@ export default styled(MainPage)`
     padding: 5px;
     grid-gap: 5px;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     border-radius: 3px;
     position: absolute;
   }
@@ -164,21 +222,24 @@ export default styled(MainPage)`
     img {
       position: absolute;
       width: 100%;
+      opacity: 0;
       height: 100%;
     }
-    img:nth-child(2) {
-      opacity: 0;
-      animation: fade-in-out 10s infinite;
-    }
-    &:nth-child(2) img {
+    &:nth-child(2) img:nth-child(2) {
       animation-delay: 1s;
     }
-    &:nth-child(3) img {
+    &:nth-child(3) img:nth-child(2) {
       animation-delay: 2s;
     }
-    &:nth-child(4) img {
+    &:nth-child(4) img:nth-child(2) {
       animation-delay: 3s;
     }
+  }
+  .fade-in {
+    animation: fade-in 1s forwards;
+  }
+  .fade-in-out {
+    animation: fade-in-out 10s infinite;
   }
   @keyframes fade-in-out {
     0% {
@@ -195,6 +256,14 @@ export default styled(MainPage)`
     }
     100% {
       opacity: 0;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
   .slogan {
