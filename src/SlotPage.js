@@ -39,20 +39,9 @@ class SlotPage extends React.Component {
       isModalOpen: false,
     });
   };
-  changeRestaurant = () => {
-    if (this.state.isSlotLocked) return;
-    this.roller.roll();
-    this.isFirstTime = false;
-    const { restaurants } = this.props;
-    const restaurant =
-      restaurants[Math.floor(Math.random() * restaurants.length)];
-    this.setState({ restaurant, isSlotLocked: true });
-    this.slotLockTimer = setTimeout(() => {
-      this.setState({
-        isSlotLocked: false,
-      });
-    }, 2000);
-  };
+  setRoller = roller => {
+    this.roller = roller
+  }
   restaurantWillUpdate = () => {
     if (this.state.isSlotLocked) return;
     this.roller.roll();
@@ -85,7 +74,7 @@ class SlotPage extends React.Component {
             src={handle}
             className="handle"
             alt="handle"
-            onLongPress={this.changeRestaurant}
+            onLongPress={this.restaurantWillUpdate}
             pressTime={500}
           />
         </div>
@@ -97,7 +86,7 @@ class SlotPage extends React.Component {
           </div>
           <div className="roll">
             <SlotRoller
-              ref={r => (this.roller = r)}
+              ref={this.setRoller}
               rollTime={4000}
               callback={this.updateRestaurant}
               items={this.props.restaurants}
