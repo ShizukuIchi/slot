@@ -6,7 +6,10 @@ class SlotRoller extends React.Component {
     this.listStyler = styler(this.list);
   }
   componentWillUnmount() {
-    this.animator.stop();
+    if(this.animator) this.animator.stop();
+  }
+  setListRef = ref => {
+    this.list = ref 
   }
   roll = () => {
     this.animator = tween({
@@ -21,7 +24,7 @@ class SlotRoller extends React.Component {
       .start(this.listStyler.set);
   };
   render() {
-    return <div ref={ref => (this.list = ref)}>{this.props.children}</div>;
+    return <div ref={this.setListRef}>{this.props.children}</div>;
   }
 }
 export default SlotRoller;

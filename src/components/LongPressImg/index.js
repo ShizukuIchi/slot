@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function LongPressImg({ onLongPress, pressTime, src, alt, className }) {
+function LongPressImg({ onLongPress, pressTime, alt, ...otherProps }) {
   let timer;
   useEffect(() => {
     timer = null;
@@ -18,9 +18,8 @@ function LongPressImg({ onLongPress, pressTime, src, alt, className }) {
   }
   return (
     <img
-      src={src}
+      {...otherProps}
       alt={alt}
-      className={className}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     />

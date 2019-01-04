@@ -20,7 +20,7 @@ class SlotPage extends React.Component {
         Math.floor(Math.random() * this.props.restaurants.length)
       ],
     };
-    this.isModalLocked = true;
+    this.isFirstTime = true;
   }
   componentWillUnmount() {
     clearTimeout(this.slotLockTimer);
@@ -29,7 +29,7 @@ class SlotPage extends React.Component {
     this.props.history.push('/');
   };
   openModal = () => {
-    if (this.state.isSlotLocked || this.isModalLocked) return;
+    if (this.state.isSlotLocked || this.isFirstTime) return;
     this.setState({
       isModalOpen: true,
     });
@@ -41,8 +41,8 @@ class SlotPage extends React.Component {
   };
   changeRestaurant = () => {
     if (this.state.isSlotLocked) return;
-    // this.roller.roll();
-    this.isModalLocked = false;
+    this.roller.roll();
+    this.isFirstTime = false;
     const { restaurants } = this.props;
     const restaurant =
       restaurants[Math.floor(Math.random() * restaurants.length)];
@@ -66,7 +66,6 @@ class SlotPage extends React.Component {
             alt="handle"
             onLongPress={this.changeRestaurant}
             pressTime={500}
-            isLocked={isSlotLocked}
           />
         </div>
         <div className="container">
@@ -77,9 +76,9 @@ class SlotPage extends React.Component {
           </div>
           <div className="roll">
             <div className="inner-roll">
-              {/* <SlotRoller ref={r => (this.roller = r)}> */}
+              <SlotRoller ref={r => (this.roller = r)}>
               {isSlotLocked ? '???' : restaurant.name}
-              {/* </SlotRoller> */}
+              </SlotRoller>
             </div>
           </div>
           <div className="buttons">
@@ -90,11 +89,11 @@ class SlotPage extends React.Component {
               className={isSlotLocked ? 'not-allowed' : ''}
               onClick={this.changeRestaurant}
             >
-              {this.isModalLocked ? '第一次拉拉' : '哼！我要重拉'}
+              {this.isFirstTime ? '第一次拉拉' : '哼！我要重拉'}
             </button>
             <button
               className={
-                isSlotLocked || this.isModalLocked ? 'not-allowed' : ''
+                isSlotLocked || this.isFirstTime ? 'not-allowed' : ''
               }
               onClick={this.openModal}
             >
