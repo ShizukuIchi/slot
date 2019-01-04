@@ -3,7 +3,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  font-family: 'Noto Sans TC';
+  font-family: 'Noto Sans TC', Sans-Serif;
   font-size: 16px;
 }
 

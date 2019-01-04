@@ -53,6 +53,27 @@ class SlotPage extends React.Component {
       });
     }, 2000);
   };
+  restaurantWillUpdate = () => {
+    if (this.state.isSlotLocked) return;
+    this.roller.roll();
+    this.isFirstTime = false;
+    this.setState({ isSlotLocked: true });
+  };
+  updateRestaurant = index => {
+    const { restaurants } = this.props;
+    const restaurant =
+      restaurants[restaurants.length - (index % restaurants.length) - 1];
+    this.setState({ restaurant, isSlotLocked: false });
+  };
+  genItems = () => {
+    const { restaurants } = this.props;
+    const dummy = { ...restaurants[restaurants.length - 1], id: -1 };
+    return [dummy, ...restaurants].map(item => (
+      <div key={item.id} className="roll-item">
+        <div className="inner-roll">{item.name}</div>
+      </div>
+    ));
+  };
   render() {
     const { restaurant, isModalOpen, isSlotLocked } = this.state;
     if (typeof restaurant === 'undefined') return <Redirect to="/" />;
@@ -75,11 +96,15 @@ class SlotPage extends React.Component {
             </SplitText>
           </div>
           <div className="roll">
-            <div className="inner-roll">
-              <SlotRoller ref={r => (this.roller = r)}>
-              {isSlotLocked ? '???' : restaurant.name}
-              </SlotRoller>
-            </div>
+            <SlotRoller
+              ref={r => (this.roller = r)}
+              rollTime={4000}
+              callback={this.updateRestaurant}
+              items={this.props.restaurants}
+              className="roll-items"
+            >
+              {this.genItems()}
+            </SlotRoller>
           </div>
           <div className="buttons">
             <button className="button" onClick={this.goBack}>
@@ -87,14 +112,12 @@ class SlotPage extends React.Component {
             </button>
             <button
               className={isSlotLocked ? 'not-allowed' : ''}
-              onClick={this.changeRestaurant}
+              onClick={this.restaurantWillUpdate}
             >
               {this.isFirstTime ? '第一次拉拉' : '哼！我要重拉'}
             </button>
             <button
-              className={
-                isSlotLocked || this.isFirstTime ? 'not-allowed' : ''
-              }
+              className={isSlotLocked || this.isFirstTime ? 'not-allowed' : ''}
               onClick={this.openModal}
             >
               餐廳詳細資訊
@@ -171,7 +194,7 @@ export default styled(SlotPage)`
     left: 86px;
     width: 487px;
     height: 148px;
-    overflow: auto;
+    overflow: hidden;
   }
   .inner-roll {
     position: absolute;
@@ -182,6 +205,18 @@ export default styled(SlotPage)`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .roll-items {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .roll-item {
+    position: relative;
+    overflow: hidden;
+    height: 148px;
+    width: 100%;
   }
   .buttons {
     top: 445px;
