@@ -40,8 +40,8 @@ class SlotPage extends React.Component {
     });
   };
   setRoller = roller => {
-    this.roller = roller
-  }
+    this.roller = roller;
+  };
   restaurantWillUpdate = () => {
     if (this.state.isSlotLocked) return;
     this.roller.roll();
@@ -84,7 +84,7 @@ class SlotPage extends React.Component {
               拉出來的命定餐廳是...
             </SplitText>
           </div>
-          <div className="roll">
+          <div className="roll" style={{ zIndex: this.isFirstTime ? -1 : 1 }}>
             <SlotRoller
               ref={this.setRoller}
               rollTime={4000}
