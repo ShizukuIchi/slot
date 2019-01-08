@@ -30,7 +30,9 @@ export default class App extends Component {
     });
   };
   handleUpdateRestaurants = restaurants => {
-    this.setState({ restaurants });
+    this.setState({ restaurants }, () => {
+      this.props.history.push('/slot');
+    });
   };
   render() {
     return (

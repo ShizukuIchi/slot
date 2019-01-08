@@ -31,7 +31,7 @@ function MainPage(props) {
     handleUpdateRestaurants,
     ratingoption1,
   } = props;
-  const [isFetching, onFetch] = useData(handleDataUpdate);
+  const [isFetching, onFetch] = useData();
   function onClick() {
     preloadImages();
     onFetch({
@@ -42,11 +42,9 @@ function MainPage(props) {
       category,
       rating,
       ratingoption1,
-    }).then(handleDataUpdate);
-  }
-  function handleDataUpdate(data) {
-    handleUpdateRestaurants(data);
-    props.history.push('./slot');
+    })
+      .then(handleUpdateRestaurants)
+      .catch(console.log);
   }
   function preloadImages() {
     [handleLarge, slotLarge].forEach(url => {

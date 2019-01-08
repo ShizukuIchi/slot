@@ -8,8 +8,13 @@ import {
   faDollarSign,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { wakeHost } from '../../api';
+
 export default class Initiator extends Component {
   componentDidMount() {
+    wakeHost()
+      .then(console.log)
+      .catch(console.log);
     const fontPromise = new Promise((resolve, reject) => {
       WebFont.load({
         google: {
