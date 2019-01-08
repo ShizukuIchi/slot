@@ -40,7 +40,7 @@ class Modal extends React.Component {
     const { restaurant, className } = this.props;
     const {
       name,
-      address,
+      Adress,
       bsMo,
       bsTu,
       bsWe,
@@ -48,11 +48,11 @@ class Modal extends React.Component {
       bsFr,
       bsSa,
       bsSu,
-      bsAll,
-      intro,
-      phone,
-      recommend,
-      score,
+      OpenTime,
+      Quote,
+      tel,
+      Recommend,
+      Rating,
     } = restaurant;
     return (
       <PoseGroup>
@@ -76,25 +76,25 @@ class Modal extends React.Component {
                         bsTh,
                         bsFr,
                         bsSa,
-                        bsAll,
+                        OpenTime,
                       ])}
                     </div>
                     <div className="sub-title">評價：</div>
-                    <div className="sub-content">{score}</div>
+                    <div className="sub-content">{Rating}</div>
                     <div className="sub-title">簡介：</div>
-                    <div className="sub-content">{intro}</div>
+                    <div className="sub-content">{Quote}</div>
                   </Item>
                   <Item className="addr">
                     <div className="sub-title">地址：</div>
-                    <div className="sub-content">{address}</div>
+                    <div className="sub-content">{Adress}</div>
                   </Item>
                   <Item className="tel">
                     <div className="sub-title">電話：</div>
-                    <div className="sub-content">{phone}</div>
+                    <div className="sub-content">{tel}</div>
                   </Item>
                   <Item className="comment">
                     <div className="sub-title">推薦菜單：</div>
-                    <div className="sub-content">{recommend}</div>
+                    <div className="sub-content">{Recommend}</div>
                   </Item>
                 </Content>
               </PosedModal>

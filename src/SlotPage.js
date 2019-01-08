@@ -16,9 +16,7 @@ class SlotPage extends React.Component {
       isModalOpen: false,
       isSlotLocked: false,
       isModalLocked: true,
-      restaurant: this.props.restaurants[
-        Math.floor(Math.random() * this.props.restaurants.length)
-      ],
+      restaurant: this.props.restaurants[0],
     };
     this.isFirstTime = true;
   }
@@ -64,6 +62,7 @@ class SlotPage extends React.Component {
     ));
   };
   render() {
+    console.log(this.props.restaurants);
     const { restaurant, isModalOpen, isSlotLocked } = this.state;
     if (typeof restaurant === 'undefined') return <Redirect to="/" />;
     return (

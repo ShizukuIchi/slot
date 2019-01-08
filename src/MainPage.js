@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DataRequester from './components/DataRequester';
+import useData from './hooks/useData';
 import LazyImage from './components/LazyImage';
-import { restaurants, MRTStations } from './components/DataRequester/data';
+import { restaurants, MRTStations } from './assets/data';
 
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
@@ -31,13 +31,28 @@ function MainPage(props) {
     handleUpdateRestaurants,
     ratingoption1,
   } = props;
+  const [isFetching, onFetch] = useData(handleDataUpdate);
+  function onClick() {
+    preloadImages();
+    onFetch({
+      region,
+      price,
+      costoption1,
+      costoption2,
+      category,
+      rating,
+      ratingoption1,
+    }).then(handleDataUpdate);
+  }
   function handleDataUpdate(data) {
+    handleUpdateRestaurants(data);
+    props.history.push('./slot');
+  }
+  function preloadImages() {
     [handleLarge, slotLarge].forEach(url => {
       const img = new Image();
       img.src = url;
     });
-    handleUpdateRestaurants(data);
-    props.history.push('./slot');
   }
   return (
     <div className={props.className}>
@@ -204,33 +219,18 @@ function MainPage(props) {
                 alt="slot-handle"
                 placeholder={ImagePlaceholder}
               />
-              <DataRequester
-                fetchArguments={{
-                  region,
-                  price,
-                  costoption1,
-                  costoption2,
-                  category,
-                  rating,
-                  ratingoption1,
-                }}
-                callback={handleDataUpdate}
+              <button
+                className="slot-button"
+                onClick={onClick}
+                style={{ cursor: isFetching ? 'not-allowed' : 'pointer' }}
               >
-                {(isFetching, onFetch) => (
-                  <button
-                    className="slot-button"
-                    onClick={onFetch}
-                    style={{ cursor: isFetching ? 'not-allowed' : 'pointer' }}
-                  >
-                    <div className="slot-button-inner">
-                      <span className="slot-button-text" to="slot">
-                        {isFetching ? '讀取' : '開始'}
-                        <span className="large">拉</span>
-                      </span>
-                    </div>
-                  </button>
-                )}
-              </DataRequester>
+                <div className="slot-button-inner">
+                  <span className="slot-button-text" to="slot">
+                    {isFetching ? '讀取' : '開始'}
+                    <span className="large">拉</span>
+                  </span>
+                </div>
+              </button>
             </div>
           </div>
         </div>

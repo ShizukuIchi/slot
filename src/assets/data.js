@@ -1,4 +1,4 @@
-export const MRTStations = [
+﻿export const MRTStations = [
   '都可以',
   '附近無捷運站',
   '台大醫院站',

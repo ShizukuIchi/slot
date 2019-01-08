@@ -29,7 +29,9 @@ export default class App extends Component {
       [name]: value,
     });
   };
-  handleUpdateRestaurants = restaurants => this.setState({ restaurants });
+  handleUpdateRestaurants = restaurants => {
+    this.setState({ restaurants });
+  };
   render() {
     return (
       <>
