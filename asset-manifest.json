@@ -1,9 +1,9 @@
 {
-  "main.css": "/slot/static/css/main.6fe54f40.chunk.css",
-  "main.js": "/slot/static/js/main.b290b1bb.chunk.js",
-  "main.js.map": "/slot/static/js/main.b290b1bb.chunk.js.map",
-  "static/js/1.5465f318.chunk.js": "/slot/static/js/1.5465f318.chunk.js",
-  "static/js/1.5465f318.chunk.js.map": "/slot/static/js/1.5465f318.chunk.js.map",
+  "main.css": "/slot/static/css/main.6f44ac57.chunk.css",
+  "main.js": "/slot/static/js/main.0f2a8906.chunk.js",
+  "main.js.map": "/slot/static/js/main.0f2a8906.chunk.js.map",
+  "static/js/1.1a551aaa.chunk.js": "/slot/static/js/1.1a551aaa.chunk.js",
+  "static/js/1.1a551aaa.chunk.js.map": "/slot/static/js/1.1a551aaa.chunk.js.map",
   "runtime~main.js": "/slot/static/js/runtime~main.1a6d728a.js",
   "runtime~main.js.map": "/slot/static/js/runtime~main.1a6d728a.js.map",
   "static/media/slot.png": "/slot/static/media/slot.d2f1aefb.png",
@@ -17,8 +17,8 @@
   "static/media/first-image7.png": "/slot/static/media/first-image7.d216b07a.png",
   "static/media/first-image8.png": "/slot/static/media/first-image8.a1971c51.png",
   "static/media/handle-large.png": "/slot/static/media/handle-large.68522c2f.png",
-  "static/css/main.6fe54f40.chunk.css.map": "/slot/static/css/main.6fe54f40.chunk.css.map",
+  "static/css/main.6f44ac57.chunk.css.map": "/slot/static/css/main.6f44ac57.chunk.css.map",
   "index.html": "/slot/index.html",
-  "precache-manifest.41252c3c63335cd297fd920aa1cd4e0f.js": "/slot/precache-manifest.41252c3c63335cd297fd920aa1cd4e0f.js",
+  "precache-manifest.a632d267c0a72fafe011283680837dac.js": "/slot/precache-manifest.a632d267c0a72fafe011283680837dac.js",
   "service-worker.js": "/slot/service-worker.js"
 }
