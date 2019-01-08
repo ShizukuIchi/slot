@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DataRequester from './components/DataRequester';
 import LazyImage from './components/LazyImage';
+import { restaurants, MRTStations } from './components/DataRequester/data';
 
 import slot from './assets/slot-button.png';
 import handle from './assets/handle-small.png';
@@ -22,10 +23,13 @@ function MainPage(props) {
   const {
     region,
     price,
+    costoption1,
+    costoption2,
     category,
-    time,
+    rating,
     handleChange,
     handleUpdateRestaurants,
+    ratingoption1,
   } = props;
   function handleDataUpdate(data) {
     [handleLarge, slotLarge].forEach(url => {
@@ -112,12 +116,13 @@ function MainPage(props) {
                   icon="location-arrow"
                 />
                 <span className="question-title">用餐區域：</span>
-                <input
-                  type="text"
-                  name="region"
-                  onChange={handleChange}
-                  value={region}
-                />
+                <select onChange={handleChange} name="region" value={region}>
+                  {MRTStations.map(m => (
+                    <option value={m} key={m}>
+                      {m}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="question">
                 <FontAwesomeIcon className="question-icon" icon="dollar-sign" />
@@ -128,25 +133,61 @@ function MainPage(props) {
                   onChange={handleChange}
                   value={price}
                 />
+                <span className="question-title">以下</span>
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="costoption1"
+                  checked={costoption1 === '以下'}
+                  value="以下"
+                />
+                <span className="question-title">以上</span>
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="costoption1"
+                  checked={costoption1 === '以上'}
+                  value="以上"
+                />
+                <span className="question-title">無資訊</span>
+                <input
+                  type="checkbox"
+                  name="costoption2"
+                  checked={costoption2}
+                  onChange={handleChange}
+                />
               </div>
               <div className="question">
                 <FontAwesomeIcon className="question-icon" icon="utensils" />
                 <span className="question-title">餐點類型：</span>
-                <input
-                  type="text"
-                  name="category"
+                <select
                   onChange={handleChange}
+                  name="category"
                   value={category}
-                />
+                >
+                  {restaurants.map(r => (
+                    <option value={r} key={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="question">
                 <FontAwesomeIcon className="question-icon" icon="clock" />
-                <span className="question-title">用餐時間：</span>
+                <span className="question-title">餐廳評價：</span>
+                <select onChange={handleChange} name="rating" value={rating}>
+                  {[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map(r => (
+                    <option value={r} key={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+                <span className="question-title">無資訊</span>
                 <input
-                  type="text"
-                  name="time"
+                  type="checkbox"
+                  name="ratingoption1"
+                  checked={ratingoption1}
                   onChange={handleChange}
-                  value={time}
                 />
               </div>
             </div>
@@ -164,7 +205,15 @@ function MainPage(props) {
                 placeholder={ImagePlaceholder}
               />
               <DataRequester
-                fetchArguments={{ region, price, category, time }}
+                fetchArguments={{
+                  region,
+                  price,
+                  costoption1,
+                  costoption2,
+                  category,
+                  rating,
+                  ratingoption1,
+                }}
                 callback={handleDataUpdate}
               >
                 {(isFetching, onFetch) => (
@@ -303,10 +352,20 @@ export default styled(MainPage)`
     height: 24px;
     display: flex;
     align-items: center;
-    input {
-      width: 30px;
+    input[type='text'] {
+      width: 40px;
+      padding: 0 3px;
+      text-align: right;
       border-width: 1px;
       flex-grow: 1;
+    }
+    input[type='radio'],
+    input[type='checkbox'] {
+      margin-left: 7px;
+    }
+
+    select {
+      width: 100px;
     }
   }
   .question-icon {

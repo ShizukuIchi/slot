@@ -10,16 +10,23 @@ export default class App extends Component {
     super(props);
     this.state = {
       isFetching: false,
-      region: '大安',
-      price: 200,
-      category: '速食',
-      time: '晚餐',
+      region: '都可以',
+      price: 300,
+      costoption1: '以上',
+      costoption2: true,
+      category: '中式料理',
+      rating: 3.5,
+      ratingoption1: true,
       restaurants: [],
     };
   }
-  handleChange = e => {
+  handleChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
     this.setState({
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
   handleUpdateRestaurants = restaurants => this.setState({ restaurants });
