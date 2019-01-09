@@ -145,24 +145,22 @@ function MainPage(props) {
                   name="price"
                   onChange={handleChange}
                   value={price}
+                  maxLength="4"
                 />
-                <span className="question-title">以下</span>
-                <input
+                <span className="question-title">元</span>
+                <select
                   onChange={handleChange}
-                  type="radio"
                   name="costoption1"
-                  checked={costoption1 === '以下'}
-                  value="以下"
-                />
-                <span className="question-title">以上</span>
-                <input
-                  onChange={handleChange}
-                  type="radio"
-                  name="costoption1"
-                  checked={costoption1 === '以上'}
-                  value="以上"
-                />
-                <span className="question-title">無資訊</span>
+                  value={costoption1}
+                  className="cost-option"
+                >
+                  {['以上', '以下'].map(r => (
+                    <option value={r} key={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+                <span className="question-title">無資訊餐廳</span>
                 <input
                   type="checkbox"
                   name="costoption2"
@@ -195,7 +193,7 @@ function MainPage(props) {
                     </option>
                   ))}
                 </select>
-                <span className="question-title">無資訊</span>
+                <span className="question-title">無資訊餐廳</span>
                 <input
                   type="checkbox"
                   name="ratingoption1"
@@ -352,20 +350,24 @@ export default styled(MainPage)`
     align-items: center;
     input[type='text'] {
       width: 40px;
-      padding: 0 3px;
+      padding: 0 5px;
       text-align: right;
       border-width: 1px;
-      flex-grow: 1;
     }
     input[type='radio'],
     input[type='checkbox'] {
       margin-left: 7px;
     }
-
+    .cost-option {
+      margin-left: 7px;
+      width: 70px;
+      border: 0;
+    }
     select {
       width: 100px;
     }
   }
+
   .question-icon {
     width: 16px;
     height: 16px;
