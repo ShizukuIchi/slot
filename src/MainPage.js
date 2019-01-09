@@ -45,7 +45,10 @@ function MainPage(props) {
       ratingoption1,
     })
       .then(handleUpdateRestaurants)
-      .catch(console.log);
+      .catch(e => {
+        handleUpdateRestaurants([]);
+        console.log(e);
+      });
   }
   function preloadImages() {
     [handleLarge, slotLarge].forEach(url => {
