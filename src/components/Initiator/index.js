@@ -6,6 +6,7 @@ import {
   faClock,
   faUtensils,
   faDollarSign,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { wakeHost } from '../../api';
@@ -20,15 +21,13 @@ export default class Initiator extends Component {
         google: {
           families: ['Noto Sans TC'],
         },
-        active: () => {
-          resolve();
-        },
+        active: resolve,
       });
     });
     Promise.all([fontPromise]).then(() => {
       this.props.setLoaded();
     });
-    library.add(faLocationArrow, faClock, faUtensils, faDollarSign);
+    library.add(faLocationArrow, faStar, faUtensils, faDollarSign);
   }
   render() {
     return 'loading';

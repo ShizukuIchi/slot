@@ -173,7 +173,7 @@ function MainPage(props) {
                     </option>
                   ))}
                 </select>
-                <span className="question-title">無資訊餐廳</span>
+                <span className="question-title  no-info">包含無資訊</span>
                 <input
                   type="checkbox"
                   name="costoption2"
@@ -197,15 +197,15 @@ function MainPage(props) {
                 </select>
               </div>
               <div className="question">
-                <FontAwesomeIcon className="question-icon" icon="clock" />
+                <FontAwesomeIcon className="question-icon" icon="star" />
                 <span className="question-title">餐廳評價：</span>
                 <Rating
                   maxValue={5}
                   value={rating}
-                  size={20}
+                  size={25}
                   onChange={handleRatingChange}
                 />
-                <span className="question-title">無資訊餐廳</span>
+                <span className="question-title no-info">包含無資訊</span>
                 <input
                   type="checkbox"
                   name="ratingoption1"
@@ -217,7 +217,7 @@ function MainPage(props) {
             <div className="slot-wrapper">
               <LazyImage
                 src={slot}
-                className="slot fade-in"
+                className="slot"
                 alt="slot-button"
                 placeholder={ImagePlaceholder}
               />
@@ -256,12 +256,15 @@ export default styled(MainPage)`
     width: 900px;
     display: flex;
     padding: 50px 25px;
+    background-color: #e17055;
+    border-radius: 7px;
+    box-shadow: 5px 5px 15px rgba(45, 52, 54, 0.5);
   }
   .images {
     width: 100%;
     height: 100%;
     display: grid;
-    background: white;
+    background: #dfe6e9;
     padding: 5px;
     grid-gap: 5px;
     grid-template-columns: 1fr 1fr;
@@ -328,7 +331,7 @@ export default styled(MainPage)`
     width: 50%;
     height: 30%;
     border-radius: 3px;
-    background: rgba(0, 0, 0, 0.8);
+    background: #000c;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,6 +340,7 @@ export default styled(MainPage)`
     font-size: 2em;
     padding: 0 20px;
     text-align: center;
+    text-shadow: none;
   }
   .text-content {
     height: 100%;
@@ -347,10 +351,14 @@ export default styled(MainPage)`
     white-space: nowrap;
     font-size: 2em;
     font-weight: 700;
+    color: #ffeaa7;
+    text-shadow: 0 0 1px #fdcb6e;
     text-align: center;
   }
   .subtitle {
     white-space: nowrap;
+    color: #ffeaa7;
+    font-weight: 700;
     text-align: center;
   }
   .questions {
@@ -360,27 +368,29 @@ export default styled(MainPage)`
     height: 30px;
     display: flex;
     align-items: center;
+    color: #ffeaa7;
+    font-size: 1.03em;
     input[type='text'] {
       width: 40px;
-      height: 90%;
+      height: 100%;
       padding: 0 5px;
       text-align: right;
-      background-color: transparent;
+      background-color: white;
+      border-radius: 2px;
       border: 0;
-      border-bottom: 1px black solid;
-      font-size: 1.1em;
+      font-size: 1.03em;
     }
-    input[type='radio'],
     input[type='checkbox'] {
       height: 100%;
-      margin-left: 7px;
+      background-color: white;
     }
     .cost-option {
-      margin-left: 7px;
       width: 70px;
       border: 0;
     }
     select {
+      -moz-appearance: auto;
+      border-radius: 2px;
       width: 100px;
       height: 100%;
       border: 0;
@@ -388,17 +398,22 @@ export default styled(MainPage)`
       padding-left: 5px;
     }
   }
-
+  .no-info {
+    flex-grow: 1;
+    text-align: right;
+  }
   .question-icon {
+    color: #ffeaa7;
     width: 16px;
     height: 16px;
   }
   .question:not(:last-child) {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
   }
   .question-title {
+    line-height: 0;
     white-space: nowrap;
-    margin-left: 7px;
+    margin: 0 7px;
   }
   .slot-wrapper {
     flex: 1;
@@ -445,7 +460,7 @@ export default styled(MainPage)`
     color: white;
     font-weight: 700;
     font-size: 1.6em;
-    text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
     .large {
       font-size: 1.6rem;
     }

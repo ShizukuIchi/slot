@@ -37,12 +37,14 @@ function Rating({ value, maxValue, className, size, onChange }) {
 }
 
 export default styled(Rating)`
+  cursor: pointer;
+  text-shadow: none;
   width: ${({ maxValue, size }) => maxValue * size}px;
   height: ${({ size }) => size}px;
   font-size: ${({ size }) => size}px;
-  line-height: ${({ size }) => size}px;
+  line-height: ${({ size }) => '80%'};
   position: relative;
-
+  transition: transform 0.1s;
   .stars {
     background-color: yellow;
     -webkit-background-clip: text;
@@ -52,7 +54,11 @@ export default styled(Rating)`
     width: 100%;
     position: absolute;
   }
+  &:hover {
+    transform: scale(1.03);
+  }
   .gray {
-    background-color: rgb(100, 100, 100);
+    text-shadow: 0 0 1px black;
+    color: #636e72;
   }
 `;
