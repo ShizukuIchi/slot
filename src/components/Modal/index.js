@@ -102,9 +102,10 @@ class Modal extends React.Component {
                     <div className="sub-content">
                       <div className="sub-images">
                         {images.map(
-                          img =>
+                          (img, index) =>
                             img.length && (
                               <ZoomImg
+                                key={index}
                                 imageWidth="100%"
                                 imageHeight="100%"
                                 src={img}

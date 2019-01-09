@@ -12,7 +12,7 @@ export default class App extends Component {
       isFetching: false,
       region: '都可以',
       price: 300,
-      costoption1: '以上',
+      costoption1: '以下',
       costoption2: true,
       category: '中式料理',
       rating: 3.5,
@@ -22,7 +22,17 @@ export default class App extends Component {
   }
   handleChange = event => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    let value;
+    switch (target.type) {
+      case 'checkbox':
+        value = target.checked;
+        break;
+      case 'text':
+        value = Number(target.value) ? target.value : 0;
+        break;
+      default:
+        value = target.value;
+    }
     const name = target.name;
 
     this.setState({

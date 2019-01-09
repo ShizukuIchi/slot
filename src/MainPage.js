@@ -155,7 +155,7 @@ function MainPage(props) {
                   name="price"
                   onChange={handleChange}
                   value={price}
-                  maxLength="4"
+                  maxLength="3"
                 />
                 <span className="question-title">元</span>
                 <select
@@ -354,17 +354,22 @@ export default styled(MainPage)`
     margin-top: 20px;
   }
   .question {
-    height: 24px;
+    height: 30px;
     display: flex;
     align-items: center;
     input[type='text'] {
       width: 40px;
+      height: 90%;
       padding: 0 5px;
       text-align: right;
-      border-width: 1px;
+      background-color: transparent;
+      border: 0;
+      border-bottom: 1px black solid;
+      font-size: 1.1em;
     }
     input[type='radio'],
     input[type='checkbox'] {
+      height: 100%;
       margin-left: 7px;
     }
     .cost-option {
@@ -374,6 +379,10 @@ export default styled(MainPage)`
     }
     select {
       width: 100px;
+      height: 100%;
+      border: 0;
+      background-color: white;
+      padding-left: 5px;
     }
   }
 
@@ -382,7 +391,7 @@ export default styled(MainPage)`
     height: 16px;
   }
   .question:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   .question-title {
     white-space: nowrap;
