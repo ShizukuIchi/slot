@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useData from './hooks/useData';
 import LazyImage from './components/LazyImage';
+import Rating from './components/Rating';
 import { restaurants, MRTStations } from './assets/data';
 
 import slot from './assets/slot-button.png';
@@ -50,6 +51,14 @@ function MainPage(props) {
     [handleLarge, slotLarge].forEach(url => {
       const img = new Image();
       img.src = url;
+    });
+  }
+  function handleRatingChange(value) {
+    handleChange({
+      target: {
+        name: 'rating',
+        value,
+      },
     });
   }
   return (
@@ -122,6 +131,7 @@ function MainPage(props) {
             <div className="subtitle">
               回答問題，我們將為您挑選出命中注定的餐廳！
             </div>
+
             <div className="questions">
               <div className="question">
                 <FontAwesomeIcon
@@ -186,13 +196,12 @@ function MainPage(props) {
               <div className="question">
                 <FontAwesomeIcon className="question-icon" icon="clock" />
                 <span className="question-title">餐廳評價：</span>
-                <select onChange={handleChange} name="rating" value={rating}>
-                  {[0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5].map(r => (
-                    <option value={r} key={r}>
-                      {r}
-                    </option>
-                  ))}
-                </select>
+                <Rating
+                  maxValue={5}
+                  value={rating}
+                  size={20}
+                  onChange={handleRatingChange}
+                />
                 <span className="question-title">無資訊餐廳</span>
                 <input
                   type="checkbox"
