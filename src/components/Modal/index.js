@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import pose, { PoseGroup } from 'react-pose';
 import SplitText from 'react-pose-text';
 
+import ZoomImg from '../ZoomImg';
+
 const Container = pose.div({
   enter: { opacity: 1 },
   exit: { opacity: 0 },
@@ -40,7 +42,7 @@ class Modal extends React.Component {
     const { restaurant, className } = this.props;
     const {
       name,
-      Adress,
+      address,
       bsMo,
       bsTu,
       bsWe,
@@ -48,11 +50,12 @@ class Modal extends React.Component {
       bsFr,
       bsSa,
       bsSu,
-      OpenTime,
-      Quote,
+      openTime,
+      quote,
       tel,
-      Recommend,
-      Rating,
+      recommend,
+      rating,
+      images,
     } = restaurant;
     return (
       <PoseGroup>
@@ -76,17 +79,17 @@ class Modal extends React.Component {
                         bsTh,
                         bsFr,
                         bsSa,
-                        OpenTime,
+                        openTime,
                       ])}
                     </div>
                     <div className="sub-title">評價：</div>
-                    <div className="sub-content">{Rating}</div>
+                    <div className="sub-content">{rating}</div>
                     <div className="sub-title">簡介：</div>
-                    <div className="sub-content">{Quote}</div>
+                    <div className="sub-content">{quote}</div>
                   </Item>
                   <Item className="addr">
                     <div className="sub-title">地址：</div>
-                    <div className="sub-content">{Adress}</div>
+                    <div className="sub-content">{address}</div>
                   </Item>
                   <Item className="tel">
                     <div className="sub-title">電話：</div>
@@ -94,7 +97,22 @@ class Modal extends React.Component {
                   </Item>
                   <Item className="comment">
                     <div className="sub-title">推薦菜單：</div>
-                    <div className="sub-content">{Recommend}</div>
+                    <div className="sub-content">{recommend}</div>
+                    <div className="sub-title">精選圖片：</div>
+                    <div className="sub-content">
+                      <div className="sub-images">
+                        {images.map(
+                          img =>
+                            img.length && (
+                              <ZoomImg
+                                imageWidth="100%"
+                                imageHeight="100%"
+                                src={img}
+                              />
+                            ),
+                        )}
+                      </div>
+                    </div>
                   </Item>
                 </Content>
               </PosedModal>
@@ -164,6 +182,36 @@ export default styled(Modal)`
   .sub-content {
     margin-bottom: 10px;
   }
+  .sub-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    &:before {
+      content: '';
+      width: 0;
+      padding-bottom: 100%;
+      grid-row: 1 / 1;
+      grid-column: 1 / 1;
+    }
+    & > *:first-child {
+      grid-row: 1 / 1;
+      grid-column: 1 / 1;
+    }
+    & > * {
+      background: rgba(0, 0, 0, 0.1);
+      border: 1px white solid;
+    }
+    img {
+      cursor: zoom-in;
+      display: block;
+      width: 100%;
+      max-height: 100%;
+      margin: auto;
+    }
+  }
+
   .intro {
     grid-column: 1/3;
   }
@@ -178,5 +226,15 @@ export default styled(Modal)`
   .tel {
     grid-column: 2;
     grid-row: 2;
+  }
+  .frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background: white;
+    transform: translateZ(0);
   }
 `;

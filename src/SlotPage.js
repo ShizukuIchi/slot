@@ -62,7 +62,6 @@ class SlotPage extends React.Component {
     ));
   };
   render() {
-    console.log(this.props.restaurants);
     const { restaurant, isModalOpen, isSlotLocked } = this.state;
     if (typeof restaurant === 'undefined') return <Redirect to="/" />;
     return (
