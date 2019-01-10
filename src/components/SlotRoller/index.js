@@ -14,7 +14,7 @@ class SlotRoller extends React.Component {
     this.list = ref;
   };
   roll = () => {
-    const rows = Math.floor(Math.random() * 7) + 27;
+    const rows = Math.floor(Math.random() * 20) + 20;
     this.rowsRolled += rows;
     const bounding = this.listStyler.get('height') - 148;
     this.animator = tween({
