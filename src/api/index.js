@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 
-const host = 'https://slot-server.herokuapp.com';
+const host = 'https://slot-server2.herokuapp.com';
 export const wakeHost = () => fetch(host).then(r => r.text());
 export const getData = query => {
   const parsed = {
