@@ -3,7 +3,6 @@ import WebFont from 'webfontloader';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faLocationArrow,
-  faClock,
   faUtensils,
   faDollarSign,
   faStar,
